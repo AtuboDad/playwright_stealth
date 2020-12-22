@@ -5,7 +5,7 @@ Transplanted from [puppeteer-extra-plugin-stealth](https://github.com/berstend/p
 ## Install
 
 ```
-$ pip install playwright_stealth
+$ pip install playwright-stealth
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ stealth_sync(page)
 
 ## Test results
 
-### Pyppeteer without stealth
+### playwright without stealth
 
 <table class="image">
 <tr>
@@ -34,7 +34,7 @@ stealth_sync(page)
 </tr>
 </table>
 
-### Pyppeteer with stealth
+### playwright with stealth
 
 <table class="image">
 <tr>
