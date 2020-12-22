@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="playwright-stealth",
-    version="1.0.4",
+    version="1.0.5",
     author="ASAS1314",
     author_email="lcjasas@sina.com",
     description="playwright stealth",
