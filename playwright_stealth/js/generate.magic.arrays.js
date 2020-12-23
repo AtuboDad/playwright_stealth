@@ -110,8 +110,8 @@ function generateMagicArray(
         magicArray
     )
 
-    // We need to overlay our custom object with a JS Proxy
-    const magicArrayObjProxy = new Proxy(magicArrayObj, {
+    // Override custom object with proxy
+    return new Proxy(magicArrayObj, {
         get(target, key = '') {
             // Redirect function calls to our custom proxied versions mocking the vanilla behavior
             if (key === 'item') {
@@ -139,6 +139,4 @@ function generateMagicArray(
             return keys
         }
     })
-
-    return magicArrayObjProxy
 }

@@ -9,7 +9,7 @@ from playwright.sync_api import Page as SyncPage
 
 
 def from_file(name):
-    """read script from /js data directory"""
+    """Read script from ./js directory"""
     return pkg_resources.resource_string('playwright_stealth', f'js/{name}').decode()
 
 
@@ -17,7 +17,7 @@ SCRIPTS: Dict[str, str] = {
     'chrome_csi': from_file('chrome.csi.js'),
     'chrome_app': from_file('chrome.app.js'),
     'chrome_runtime': from_file('chrome.runtime.js'),
-    'chrome_loadtimes': from_file('chrome.loadtimes.js'),
+    'chrome_load_times': from_file('chrome.load.times.js'),
     'chrome_hairline': from_file('chrome.hairline.js'),
     'generate_magic_arrays': from_file('generate.magic.arrays.js'),
     'iframe_content_window': from_file('iframe.contentWindow.js'),
@@ -31,7 +31,7 @@ SCRIPTS: Dict[str, str] = {
     'navigator_hardware_concurrency': from_file('navigator.hardwareConcurrency.js'),
     'outerdimensions': from_file('window.outerdimensions.js'),
     'utils': from_file('utils.js'),
-    'webdrive': 'delete Object.getPrototypeOf(navigator).webdriver',
+    'webdriver': 'delete Object.getPrototypeOf(navigator).webdriver',
     'webgl_vendor': from_file('webgl.vendor.js'),
 }
 
@@ -39,9 +39,9 @@ SCRIPTS: Dict[str, str] = {
 @dataclass
 class StealthConfig:
     """
-    Playwright Stealth Configuration that applies stealth strategies to Playwright Page objects.
-    The stealth strategies are contained in /js package and are basic javascript scripts that are executed
-    on every Page.goto call.
+    Playwright stealth configuration that applies stealth strategies to playwright page objects.
+    The stealth strategies are contained in ./js package and are basic javascript scripts that are executed
+    on every page.goto() called.
     Note:
         All init scripts are combined by playwright into one script and then executed this means
         the scripts should not have conflicting constants/variables etc. !
@@ -54,8 +54,8 @@ class StealthConfig:
             yield 'console.log("last script")'
         ```
     """
-    # scripts
-    webdrive: bool = True
+    # load script options
+    webdriver: bool = True
     webgl_vendor: bool = True
     navigator_vendor: bool = True
     navigator_plugins: bool = True
@@ -67,7 +67,7 @@ class StealthConfig:
     media_codecs: bool = True
     iframe_content_window: bool = True
     chrome_runtime: bool = True
-    chrome_loadtimes: bool = True
+    chrome_load_times: bool = True
     chrome_csi: bool = True
     chrome_app: bool = True
     outerdimensions: bool = True
@@ -103,8 +103,8 @@ class StealthConfig:
             yield SCRIPTS['chrome_app']
         if self.chrome_runtime:
             yield SCRIPTS['chrome_runtime']
-        if self.chrome_loadtimes:
-            yield SCRIPTS['chrome_loadtimes']
+        if self.chrome_load_times:
+            yield SCRIPTS['chrome_load_times']
         if self.chrome_csi:
             yield SCRIPTS['chrome_csi']
         if self.iframe_content_window:
@@ -119,8 +119,8 @@ class StealthConfig:
             yield SCRIPTS['navigator_plugins']
         if self.navigator_vendor:
             yield SCRIPTS['navigator_vendor']
-        if self.webdrive:
-            yield SCRIPTS['webdrive']
+        if self.webdriver:
+            yield SCRIPTS['webdriver']
         if self.outerdimensions:
             yield SCRIPTS['outerdimensions']
         if self.webgl_vendor:
