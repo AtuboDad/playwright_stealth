@@ -11,20 +11,19 @@ $ pip install playwright-stealth
 ## Usage
 ### sync
 ```python
+
 from playwright import sync_playwright
 from playwright_stealth import stealth_sync
 
-playwright = sync_playwright().start()
+with sync_playwright() as p:
+    for browser_type in [p.chromium, p.firefox, p.webkit]:
+        browser = browser_type.launch()
+        page = browser.newPage()
+        stealth_sync(page)
+        page.goto('http://whatsmyuseragent.org/')
+        page.screenshot(path=f'example-{browser_type.name}.png')
+        browser.close()
 
-# Use playwright.chromium, playwright.firefox or playwright.webkit
-# Pass headless=False to see the browser UI
-executablePath = 'C:\\Google\\Chrome\\Application\\chrome.exe'
-browser = playwright.chromium.launch(executablePath=executablePath, headless=True)
-page = browser.newPage()
-stealth_sync(page)
-page.goto("http://www.example.com/")
-browser.close()
-playwright.stop()
 ```
 ### async
 ```python
@@ -33,22 +32,15 @@ import asyncio
 from playwright import async_playwright
 from playwright_stealth import stealth_async
 
-
 async def main():
-    async with async_playwright() as playwright:
-        await run(playwright)
-
-
-async def run(playwright):
-    executablePath = 'C:\\Google\\Chrome\\Application\\chrome.exe'
-    browser = await playwright.chromium.launch(executablePath=executablePath, headless=True)
-    page = await browser.newPage()
-    await stealth_async(page)
-    await page.goto("http://www.example.com/")
-
-    await browser.close()
-    await playwright.stop()
-
+    async with async_playwright() as p:
+        for browser_type in [p.chromium, p.firefox, p.webkit]:
+            browser = await browser_type.launch()
+            page = await browser.newPage()
+            await stealth_async(page)
+            await page.goto('http://whatsmyuseragent.org/')
+            await page.screenshot(path=f'example-{browser_type.name}.png')
+            await browser.close()
 
 asyncio.get_event_loop().run_until_complete(main())
 ```
