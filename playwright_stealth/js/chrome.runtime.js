@@ -56,7 +56,6 @@ const existsAlready = 'runtime' in window.chrome
 // `chrome.runtime` is only exposed on secure origins
 const isNotSecure = !window.location.protocol.startsWith('https')
 if (!(existsAlready || (isNotSecure && !opts.runOnInsecureOrigins))) {
-    log.info('loading chrome.runtime.js')
     window.chrome.runtime = {
         // There's a bunch of static data in that property which doesn't seem to change,
         // we should periodically check for updates: `JSON.stringify(window.chrome.runtime, null, 2)`
