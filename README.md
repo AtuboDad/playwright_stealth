@@ -12,7 +12,7 @@ $ pip install playwright-stealth
 ### sync
 ```python
 
-from playwright import sync_playwright
+from playwright.sync_api import sync_playwright
 from playwright_stealth import stealth_sync
 
 with sync_playwright() as p:
@@ -29,7 +29,7 @@ with sync_playwright() as p:
 ```python
 # -*- coding: utf-8 -*-
 import asyncio
-from playwright import async_playwright
+from playwright.async_api import async_playwright
 from playwright_stealth import stealth_async
 
 async def main():
