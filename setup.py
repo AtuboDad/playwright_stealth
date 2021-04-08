@@ -6,12 +6,12 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name="playwright-stealth",
     version="1.0.5",
-    author="ASAS1314",
+    author="AtuboDad",
     author_email="lcjasas@sina.com",
     description="playwright stealth",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ASAS1314/playwright_stealth",
+    url="https://github.com/AtuboDad/playwright_stealth",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
