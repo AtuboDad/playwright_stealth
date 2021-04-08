@@ -57,19 +57,19 @@ class StealthConfig:
     # load script options
     webdriver: bool = True
     webgl_vendor: bool = True
-    navigator_vendor: bool = True
-    navigator_plugins: bool = True
-    navigator_permissions: bool = True
-    navigator_languages: bool = True
-    navigator_platform: bool = True
-    navigator_user_agent: bool = True
-    navigator_hardware_concurrency: int = 4
-    media_codecs: bool = True
-    iframe_content_window: bool = True
-    chrome_runtime: bool = True
-    chrome_load_times: bool = True
-    chrome_csi: bool = True
     chrome_app: bool = True
+    chrome_csi: bool = True
+    chrome_load_times: bool = True
+    chrome_runtime: bool = True
+    iframe_content_window: bool = True
+    media_codecs: bool = True
+    navigator_hardware_concurrency: int = 4
+    navigator_languages: bool = True
+    navigator_permissions: bool = True
+    navigator_platform: bool = True
+    navigator_plugins: bool = True
+    navigator_user_agent: bool = True
+    navigator_vendor: bool = True
     outerdimensions: bool = True
     hairline: bool = True
 
@@ -101,12 +101,14 @@ class StealthConfig:
 
         if self.chrome_app:
             yield SCRIPTS['chrome_app']
-        if self.chrome_runtime:
-            yield SCRIPTS['chrome_runtime']
-        if self.chrome_load_times:
-            yield SCRIPTS['chrome_load_times']
         if self.chrome_csi:
             yield SCRIPTS['chrome_csi']
+        if self.hairline:
+            yield SCRIPTS['chrome_hairline']
+        if self.chrome_load_times:
+            yield SCRIPTS['chrome_load_times']
+        if self.chrome_runtime:
+            yield SCRIPTS['chrome_runtime']
         if self.iframe_content_window:
             yield SCRIPTS['iframe_content_window']
         if self.media_codecs:
@@ -115,8 +117,12 @@ class StealthConfig:
             yield SCRIPTS['navigator_languages']
         if self.navigator_permissions:
             yield SCRIPTS['navigator_permissions']
+        if self.navigator_platform:
+            yield SCRIPTS['navigator_platform']
         if self.navigator_plugins:
             yield SCRIPTS['navigator_plugins']
+        if self.navigator_user_agent:
+            yield SCRIPTS['navigator_user_agent']
         if self.navigator_vendor:
             yield SCRIPTS['navigator_vendor']
         if self.webdriver:
@@ -125,12 +131,6 @@ class StealthConfig:
             yield SCRIPTS['outerdimensions']
         if self.webgl_vendor:
             yield SCRIPTS['webgl_vendor']
-        if self.navigator_platform:
-            yield SCRIPTS['navigator_platform']
-        if self.navigator_user_agent:
-            yield SCRIPTS['navigator_user_agent']
-        if self.hairline:
-            yield SCRIPTS['chrome_hairline']
 
 
 def stealth_sync(page: SyncPage, config: StealthConfig = None):
