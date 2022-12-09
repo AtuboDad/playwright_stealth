@@ -31,7 +31,7 @@ SCRIPTS: Dict[str, str] = {
     'navigator_hardware_concurrency': from_file('navigator.hardwareConcurrency.js'),
     'outerdimensions': from_file('window.outerdimensions.js'),
     'utils': from_file('utils.js'),
-    'webdriver': 'delete Object.getPrototypeOf(navigator).webdriver',
+    'webdriver': from_file('navigator.webdriver.js'),
     'webgl_vendor': from_file('webgl.vendor.js'),
 }
 
