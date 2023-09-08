@@ -32,11 +32,11 @@ with sync_playwright() as p:
 
     page = browser.new_page()
     # stealth_sync(page)
-    page.goto('https://www.xx.com/')
+    page.goto('https://bot.sannysoft.com/')
     webdriver_flag = page.evaluate('''() => {
                 return window.navigator.webdriver
             }''')
 
     # return False
     print(f'window navigator webdriver value: {webdriver_flag}')
-    page.screenshot(path=f'example.png')
+    page.screenshot(path=f'example_with_persistent.png')

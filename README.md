@@ -49,8 +49,8 @@ asyncio.get_event_loop().run_until_complete(main())
 
 ### playwright with stealth
 
-![playwright without stealth](./images/example.png)
+![playwright without stealth](./images/example_with_stealth.png)
 
 ### playwright without stealth
 
-![playwright with stealth](./images/example1.png)
+![playwright with stealth](./images/example_without_stealth.png)
