@@ -9,7 +9,7 @@ args = [
     '--disable-infobars',
     '--lang=zh-CN',
     '--start-maximized',
-    '--window-position=0,0',
+    '--window-position=-10,0',
     # '--proxy-server=http=' + ipAndPort
 ]
 
