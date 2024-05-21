@@ -1,3 +1,1 @@
-Object.defineProperty(Object.getPrototypeOf(navigator), 'languages', {
-    get: () => opts.languages || ['en-US', 'en']
-})
+navigator.languages = opts.languages || ['en-US', 'en'];

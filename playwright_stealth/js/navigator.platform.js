@@ -1,5 +1,1 @@
-if (opts.navigator_platform) {
-    Object.defineProperty(Object.getPrototypeOf(navigator), 'platform', {
-        get: () => opts.navigator_platform,
-    })
-}
+navigator.platform = opts.navigator_platform;
