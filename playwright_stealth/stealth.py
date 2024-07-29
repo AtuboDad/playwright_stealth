@@ -2,15 +2,16 @@
 import json
 from dataclasses import dataclass
 from typing import Tuple, Optional, Dict
+from pathlib import Path
 
-import pkg_resources
 from playwright.async_api import Page as AsyncPage
 from playwright.sync_api import Page as SyncPage
 
 
 def from_file(name):
     """Read script from ./js directory"""
-    return pkg_resources.resource_string('playwright_stealth', f'js/{name}').decode()
+    file_path = Path(__file__).parent / 'js' / name
+    return file_path.read_text(encoding='utf-8')
 
 
 SCRIPTS: Dict[str, str] = {
