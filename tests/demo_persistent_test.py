@@ -1,12 +1,13 @@
+import os
 import getpass
 
 from playwright.sync_api import sync_playwright
 from playwright_stealth import stealth_sync
 
 
-chrome_path = 'C:\\Google\\Chrome\\Application\\chrome.exe'
-# 当前用户的Chrome缓存路径
-user_dir_path = f"C:\\Users\\{getpass.getuser()}\\AppData\\Local\\Google\\Chrome\\User Data"
+
+home_dir = os.path.expanduser("~")
+user_dir_path = os.path.join(home_dir, ".profile")
 channel = 'chrome'
 headless = False
 args = ['--ignore-certificate-errors',
@@ -23,7 +24,7 @@ with sync_playwright() as p:
     browser = p.chromium.launch_persistent_context(
                     user_data_dir=user_dir_path,
                     channel=channel,
-                    executable_path=chrome_path,
+                    #executable_path=chrome_path,
                     args=args,
                     accept_downloads=True,
                     headless=False,
@@ -40,3 +41,6 @@ with sync_playwright() as p:
     # return False
     print(f'window navigator webdriver value: {webdriver_flag}')
     page.screenshot(path=f'example_with_persistent.png')
+    
+    input('Press any key to exit...')
+    browser.close()

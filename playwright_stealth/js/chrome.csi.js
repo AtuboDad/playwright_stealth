@@ -14,7 +14,7 @@ if (!window.chrome) {
 if (!('csi' in window.chrome) && (window.performance || window.performance.timing)) {
     const {csi_timing} = window.performance
 
-    log.info('loading chrome.csi.js')
+    // log.info('loading chrome.csi.js')
     window.chrome.csi = function () {
         return {
             onloadT: csi_timing.domContentLoadedEventEnd,
